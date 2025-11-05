@@ -11,8 +11,8 @@
             {% endif %}
         {% endwith %}
 
-        <form method="POST" action="{{ url_for('index') }}" id="name-form">
-            <input type="text" name="name" placeholder="ใส่ชื่อของคุณหรือชื่อแฟน..." required>
+        <form method="POST" action="{{ url_for('main.index') }}" id="name-form">
+            <input type="text" name="name" placeholder="ใส่ชื่อมาได้เลยค้าบ..." required>
             <button type="submit" class="btn-main">เริ่มประกอบกระทง</button>
         </form>
     </div>

@@ -57,17 +57,33 @@ main {
 }
 
 .back-button {
+    /* ปรับตำแหน่งและสไตล์เล็กน้อย */
+    background: rgba(255, 255, 255, 0.8);
+    color: #333;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 8px 12px;
+    border-radius: 25px;
+    font-size: 0.95em;
+    display: flex; /* ทำให้ icon กับ text อยู่บรรทัดเดียวกัน */
+    align-items: center;
+    gap: 5px; /* ระยะห่างระหว่าง icon กับ text */
+    transition: all 0.2s ease;
+}
+.back-button:hover {
+    background: rgba(255, 255, 255, 1);
+    transform: scale(1.03);
+}
+
+/* เพิ่มส่วนนี้สำหรับปุ่มด้านซ้ายบน */
+.top-left-controls {
     position: absolute;
     top: 20px;
     left: 20px;
-    background: rgba(255, 255, 255, 0.8);
-    padding: 10px 15px;
-    border-radius: 20px;
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 10; /* ให้ปุ่มอยู่ด้านบนสุด */
 }
+
 
 /* Flash message (ถ้าไม่กรอกชื่อ) */
 .flash-error {
@@ -126,64 +142,108 @@ main {
     box-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
 }
 
-/* --- Page 3: Launch --- */
+/* --- Page 3: Launch (โค้ดที่แก้ไขและปรับปรุง) --- */
+.launch-page {
+    /* ไม่ต้อง flex-direction: column; แล้ว */
+    justify-content: flex-start; /* จัดให้อยู่ด้านบน */
+    align-items: flex-start; /* จัดให้อยู่ด้านซ้าย */
+}
+
 #krathong-to-launch {
     position: absolute;
-    left: 40%;
-    bottom: 20%;
-    transform: translateX(-50%);
-    transition: all 4s ease-in-out; /* transition สำหรับลอย */
+    /* ตำแหน่งกระทง: ลอยอยู่เหนือขอบล่างของจอ */
+    left: 50%; /* อยู่ตรงกลางแนวนอน */
+    bottom: 5%; /* ให้ลอยขึ้นมาจากขอบล่าง 5% */
+    transform: translateX(-50%); /* ชดเชยให้กึ่งกลางเป๊ะ */
+    transition: all 4s ease-in-out; 
+    z-index: 5; /* ให้อยู่เหนือพื้นหลัง แต่ใต้กล่องข้อความ */
 }
 #krathong-to-launch img {
-    width: 200px;
+    width: 150px; /* ลดขนาดกระทงลง (ปรับได้ตามชอบ) */
+    height: auto; /* รักษา aspect ratio */
 }
 /* CSS Animation: ให้กระทงลอย */
 #krathong-to-launch.floating {
     left: 110%; /* ลอยไปทางขวาจนตกขอบ */
-    bottom: 15%;
-    transform: scale(0.8) rotate(15deg);
+    bottom: 10%; /* ปรับให้ดูเหมือนลอยขึ้นเล็กน้อย */
+    transform: scale(0.7) rotate(15deg); /* เล็กลงและหมุนเล็กน้อย */
     opacity: 0;
 }
+
 .wish-box {
-    background: rgba(255, 255, 255, 0.9);
-    padding: 20px;
+    position: absolute; /* กำหนดตำแหน่งเอง */
+    top: 20%; /* ห่างจากด้านบน 20% (ปรับได้) */
+    right: 5%; /* ห่างจากด้านขวา 5% (ปรับได้) */
+    background: rgba(255, 255, 255, 0.7); /* โปร่งแสงมากขึ้น */
+    backdrop-filter: blur(5px); /* เพิ่มเอฟเฟกต์เบลอพื้นหลัง */
     border-radius: 15px;
+    padding: 25px 30px; /* เพิ่ม padding */
     text-align: center;
+    max-width: 400px; /* กำหนดความกว้างสูงสุด */
+    width: 90%; /* ใช้ 90% ของพื้นที่ถ้า max-width ยังไม่ถึง */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    z-index: 8; /* ให้อยู่เหนือกระทง */
+}
+.wish-box label {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #4a4a4a;
+    display: block; /* ให้ label ขึ้นบรรทัดใหม่ */
+    margin-bottom: 10px;
 }
 .wish-box textarea {
-    width: 90%;
-    height: 80px;
-    font-size: 1em;
-    border: 2px solid #ddd;
-    border-radius: 10px;
+    width: calc(100% - 20px); /* เต็มความกว้างของกล่อง (ลบ padding ซ้ายขวา) */
+    height: 100px; /* เพิ่มความสูง */
+    font-size: 1.05em;
+    font-family: 'Tahoma', sans-serif;
+    border: 1px solid #ddd;
+    border-radius: 8px;
     padding: 10px;
     margin-top: 10px;
+    resize: vertical; /* อนุญาตให้ปรับความสูงได้ */
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.08);
 }
+.wish-box .btn-main {
+    margin-top: 25px; /* เพิ่มระยะห่างจาก textarea */
+}
+
 #fireworks {
     position: absolute;
-    top: 10%;
+    top: 5%; /* ปรับให้พลุอยู่สูงขึ้น */
     left: 50%;
     transform: translateX(-50%);
-    width: 300px;
+    width: 400px; /* เพิ่มขนาดพลุ (ปรับได้) */
     z-index: 100;
 }
 
+
 /* --- Page 4: Final --- */
+.final-page .center-box {
+    /* ใช้ .center-box ที่เรามีอยู่แล้ว แต่เพิ่ม class .final-message เพื่อปรับแต่งเล็กน้อย */
+    max-width: 600px;
+}
 .final-message h2 {
     color: #ff69b4;
+}
+.final-message h3 {
+    font-size: 1.3em;
+    color: #555;
+    font-weight: normal;
 }
 .wish-display {
     font-size: 1.3em;
     font-style: italic;
     color: #555;
-    padding: 15px;
+    padding: 15px 20px;
     background: #fdf0f6;
     border-left: 5px solid #ff69b4;
     border-radius: 5px;
     margin: 20px 0;
+    text-align: left;
 }
 .romantic-text {
     font-size: 1.1em;
     color: #4a4a4a;
     font-weight: bold;
+    margin-top: 25px;
 }
