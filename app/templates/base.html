@@ -7,7 +7,10 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    
+
+    <audio autoplay loop>
+        <source src="{{ url_for('static', filename='sounds/river_sound.mp3') }}" type="audio/mpeg">
+    </audio>
     <main>
         {% block content %}{% endblock %}
     </main>
