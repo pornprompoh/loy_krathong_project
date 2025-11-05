@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-container build-page">
+    <a href="{{ url_for('index') }}" class="back-button">🏠 กลับหน้าแรก</a>
+    
+    <h2>🪷 เลือกกระทงของคุณ 🪷</h2>
+    
+    <div class="build-options">
+        <div class="krathong-choice 
+             {% if current_design == 'premade1' %}selected{% endif %}" 
+             data-design="premade1">
+            <img src="{{ url_for('static', filename='images/krathong_1.png') }}" alt="กระทงแบบ 1">
+            <p>กระทงใบตองกลีบกล้วยไม้</p>
+        </div>
+        
+        <div class="krathong-choice 
+             {% if current_design == 'premade2' %}selected{% endif %}" 
+             data-design="premade2">
+            <img src="{{ url_for('static', filename='images/krathong_2.png') }}" alt="กระทงแบบ 2">
+            <p>กระทงดอกดาวเรือง</p>
+        </div>
+
+        <div class="krathong-choice 
+             {% if current_design == 'diy' %}selected{% endif %}" 
+             data-design="diy">
+            <img src="{{ url_for('static', filename='images/krathong_base.png') }}" alt="กระทง DIY">
+            <p>ประกอบเอง (DIY) 💖</p>
+        </div>
+    </div>
+    
+    <form method="POST" action="{{ url_for('build') }}" id="build-form">
+        <input type="hidden" name="krathong_design" id="krathong_design_input" value="{{ current_design or 'premade1' }}">
+        
+        <button type="submit" class="btn-main">เสร็จแล้ว ไปปล่อยกระทงกัน 🌊</button>
+    </form>
+</div>
+{% endblock %}

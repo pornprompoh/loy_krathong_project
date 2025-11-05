@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.pyc
+/.ruff_cache
+
+# Database file
+instance/
+
+# VS Code editor folder
+.vscode/
+
+# Environment files
+.env
+venv/
+env/
+
+# User uploaded files
+uploads/

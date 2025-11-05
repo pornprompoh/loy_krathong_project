@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-container launch-page" style="background-image: url('{{ url_for('static', filename='images/bg_river.jpg') }}');">
+    <a href="{{ url_for('build') }}" class="back-button">⬅️ กลับไปเลือกกระทง</a>
+
+    <div id="krathong-to-launch">
+        {% if design == 'premade1' %}
+            <img src="{{ url_for('static', filename='images/krathong_1.png') }}" alt="กระทง">
+        {% elif design == 'premade2' %}
+            <img src="{{ url_for('static', filename='images/krathong_2.png') }}" alt="กระทง">
+        {% else %}
+            <img src="{{ url_for('static', filename='images/krathong_base.png') }}" alt="กระทง DIY">
+        {% endif %}
+    </div>
+
+    <div id="fireworks" style="display: none;">
+        <img src="{{ url_for('static', filename='images/firework.gif') }}" alt="พลุ">
+    </div>
+
+    <form method="POST" action="{{ url_for('launch') }}" id="launch-form">
+        <div class="wish-box">
+            <label for="wish">ใส่คำอธิษฐานของคุณ:</label>
+            <textarea name="wish" id="wish" placeholder="ขอให้เรารักกันนานๆ..."></textarea>
+            <button type="submit" class="btn-main" id="btn-launch">ลอยกระทง 🌕💖</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-container final-page" style="background-image: url('{{ url_for('static', filename='images/bg_welcome.jpg') }}');">
+    <a href="{{ url_for('launch') }}" class="back-button">⬅️ กลับไปหน้าลอยกระทง</a>
+
+    <div class="center-box final-message">
+        <h2>💌 คำอธิษฐานของเรา 💌</h2>
+        
+        <h3>ถึงคุณ: {{ name }}</h3>
+
+        <blockquote class="wish-display">
+            "{{ wish or 'ขอให้เรามีความสุขมากๆ' }}"
+        </blockquote>
+
+        <p class="romantic-text">
+            กระทงนี้...ลอยไปพร้อมคำอธิษฐานให้เราสองคนมีความสุขตลอดไป 💞
+        </p>
+
+        <a href="{{ url_for('index') }}" class="btn-main">กลับไปหน้าแรก</a>
+    </div>
+</div>
+{% endblock %}

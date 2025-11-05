@@ -1,0 +1,189 @@
+/* --- Global Styles --- */
+body {
+    font-family: 'Tahoma', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    overflow: hidden; /* กัน page scroll */
+}
+
+main {
+    width: 100vw;
+    height: 100vh;
+}
+
+.page-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+.center-box {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 30px 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+}
+
+.btn-main {
+    background-color: #ff69b4; /* สีชมพู */
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1.1em;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    text-decoration: none;
+}
+
+.btn-main:hover {
+    background-color: #ff85c0;
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+}
+
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 10px 15px;
+    border-radius: 20px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Flash message (ถ้าไม่กรอกชื่อ) */
+.flash-error {
+    color: red;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+
+/* --- Page 1: Welcome --- */
+.welcome-page h1 {
+    color: #4a4a4a;
+}
+.welcome-page input[type="text"] {
+    width: 80%;
+    padding: 12px;
+    font-size: 1.1em;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+/* --- Page 2: Build --- */
+.build-page {
+    background-color: #f4f8ff; /* พื้นหลังสีฟ้าอ่อน */
+}
+.build-page h2 {
+    color: #4a4a4a;
+}
+.build-options {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 20px;
+}
+.krathong-choice {
+    background: white;
+    border: 3px solid #eee;
+    border-radius: 15px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+.krathong-choice img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+.krathong-choice:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+.krathong-choice.selected {
+    border-color: #ff69b4; /* สีชมพูเมื่อเลือก */
+    box-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
+}
+
+/* --- Page 3: Launch --- */
+#krathong-to-launch {
+    position: absolute;
+    left: 40%;
+    bottom: 20%;
+    transform: translateX(-50%);
+    transition: all 4s ease-in-out; /* transition สำหรับลอย */
+}
+#krathong-to-launch img {
+    width: 200px;
+}
+/* CSS Animation: ให้กระทงลอย */
+#krathong-to-launch.floating {
+    left: 110%; /* ลอยไปทางขวาจนตกขอบ */
+    bottom: 15%;
+    transform: scale(0.8) rotate(15deg);
+    opacity: 0;
+}
+.wish-box {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+}
+.wish-box textarea {
+    width: 90%;
+    height: 80px;
+    font-size: 1em;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 10px;
+}
+#fireworks {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    z-index: 100;
+}
+
+/* --- Page 4: Final --- */
+.final-message h2 {
+    color: #ff69b4;
+}
+.wish-display {
+    font-size: 1.3em;
+    font-style: italic;
+    color: #555;
+    padding: 15px;
+    background: #fdf0f6;
+    border-left: 5px solid #ff69b4;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+.romantic-text {
+    font-size: 1.1em;
+    color: #4a4a4a;
+    font-weight: bold;
+}
