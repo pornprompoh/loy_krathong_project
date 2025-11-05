@@ -35,12 +35,6 @@
             <p>กระทงหมีน้อย</p>
         </div>
 
-        <div class="krathong-choice 
-             {% if current_design == 'diy' %}selected{% endif %}" 
-             data-design="diy">
-            <img src="{{ url_for('static', filename='images/krathong_base.png') }}" alt="กระทง DIY">
-            <p>ประกอบเอง (DIY) 💖</p>
-        </div>
     </div>
     
     <form method="POST" action="{{ url_for('main.build') }}" id="build-form">
