@@ -10,29 +10,29 @@
     </div>
 
     <div id="krathong-to-launch">
-            {% if design == 'premade1' %}
-                <img src="{{ url_for('static', filename='images/krathong_1.png') }}" alt="กระทง 1">
-            {% elif design == 'premade2' %}
-                <img src="{{ url_for('static', filename='images/krathong_2.png') }}" alt="กระทง 2">
-            
-            {% elif design == 'premade3' %}
-                <img src="{{ url_for('static', filename='images/krathong_3.png') }}" alt="กระทง 3">
-            {% elif design == 'premade4' %}
-                <img src="{{ url_for('static', filename='images/krathong_4.png') }}" alt="กระทง 4">
-            {% elif design == 'diy' %}
-                <img src="{{ url_for('static', filename='images/krathong_base.png') }}" alt="กระทง DIY">
-            {% else %}
-                <img src="{{ url_for('static', filename='images/krathong_1.png') }}" alt="กระทง">
-            {% endif %}
-        </div>
+        {% if design == 'premade1' %}
+            <img src="{{ url_for('static', filename='images/krathong_1.png') }}" alt="กระทง 1">
+        {% elif design == 'premade2' %}
+            <img src="{{ url_for('static', filename='images/krathong_2.png') }}" alt="กระทง 2">
+        {% elif design == 'premade3' %}
+            <img src="{{ url_for('static', filename='images/krathong_3.png') }}" alt="กระทง 3">
+        {% elif design == 'premade4' %}
+            <img src="{{ url_for('static', filename='images/krathong_4.png') }}" alt="กระทง 4">
+        {% else %}
+            <img src="{{ url_for('static', filename='images/krathong_1.png') }}" alt="กระทง">
+        {% endif %}
+    </div>
 
     <form method="POST" action="{{ url_for('main.launch') }}" id="launch-form">
         <div class="wish-box">
             <label for="wish">ได้เวลาอธิษฐานของคุณ:</label>
-            <textarea name="wish" id="wish" placeholder="ขอให้เรารักกันนานๆ เหมือนกระทงที่ลอยไปเรื่อยๆไม่มีวันจมค้าบ 🌕💖"></textarea>
+            <textarea name="wish" id="wish" placeholder="ขอให้เรารักกันนานๆ เหมือนกระทงที่ลอยไม่ดับ 🌕💖"></textarea>
             <button type="submit" class="btn-main" id="btn-launch">ลอยกระทง 🌕💖</button>
         </div>
     </form>
 
+    <div id="fireworks" style="display: none;">
+        <img src="{{ url_for('static', filename='images/firework.gif') }}" alt="พลุ">
+    </div>
 </div>
 {% endblock %}

@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (launchForm) {
         const btnLaunch = document.getElementById('btn-launch');
         const krathong = document.getElementById('krathong-to-launch');
-        const fireworks = document.getElementById('fireworks');
+        const fireworks = document.getElementById('fireworks'); // หาพลุ
 
         btnLaunch.addEventListener('click', function(event) {
             // 1. หยุดการ submit form ตามปกติ
@@ -36,21 +36,21 @@ document.addEventListener('DOMContentLoaded', function() {
             // 2. ซ่อนปุ่มและช่องกรอก (กันกดย้ำ)
             document.querySelector('.wish-box').style.display = 'none';
 
-            // 3. เริ่ม Animation ลอยกระทง (โดยการเพิ่ม class 'floating')
+            // 3. เริ่ม Animation ลอยกระทง (เปลี่ยนจาก .floating เป็น .animating)
             if (krathong) {
-                krathong.classList.add('floating');
+                krathong.classList.add('animating');
             }
 
-            // 4. แสดงพลุ
+            // 4. แสดงพลุ (ถ้าหาเจอ)
             if (fireworks) {
                 fireworks.style.display = 'block';
             }
 
-            // 5. หน่วงเวลา 4 วินาที (ให้กระทงลอย + พลุแตก)
+            // 5. หน่วงเวลา 7 วินาที (ให้ตรงกับ animation-duration ใน CSS)
             setTimeout(function() {
                 // 6. พอ animation จบ ค่อย submit form จริงๆ เพื่อไปหน้า 4
                 launchForm.submit();
-            }, 4000); // 4000ms = 4 วินาที
+            }, 10000); // 10000ms = 10 วินาที
         });
     }
 
