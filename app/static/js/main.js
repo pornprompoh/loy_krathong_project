@@ -54,4 +54,4 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-});
+}); // <-- [แก้ไข] ลบ } ที่เกินมา 1 ตัวจากตรงนี้

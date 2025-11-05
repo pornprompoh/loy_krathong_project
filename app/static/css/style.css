@@ -1,20 +1,24 @@
 /* --- Global Styles --- */
+* {
+    box-sizing: border-box; /* [เพิ่ม] เพื่อให้การคำนวณ padding ง่ายขึ้น */
+}
+
 body {
     font-family: 'Tahoma', sans-serif;
     margin: 0;
     padding: 0;
     color: #333;
-    overflow: hidden; /* กัน page scroll */
+    overflow-x: hidden; /* [แก้ไข] กัน page scroll แนวนอน แต่แนวตั้งทำได้ */
 }
 
 main {
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh; /* [แก้ไข] ใช้ min-height กันปัญหามือถือ */
 }
 
 .page-container {
     width: 100%;
-    height: 100%;
+    min-height: 100vh; /* [แก้ไข] */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -94,9 +98,10 @@ main {
 /* --- Page 1: Welcome --- */
 .welcome-page h1 {
     color: #4a4a4a;
+    font-size: 1.8em; /* [เพิ่ม] ทำให้ตัวอักษรไม่ใหญ่เกินไป */
 }
 .welcome-page input[type="text"] {
-    width: 80%;
+    width: 90%; /* [แก้ไข] */
     padding: 12px;
     font-size: 1.1em;
     border: 2px solid #ddd;
@@ -114,21 +119,24 @@ main {
 .build-options {
     display: flex;
     justify-content: center;
-    gap: 25px;
+    gap: 15px; /* [แก้ไข] ลดช่องว่าง */
     margin-top: 20px;
+    flex-wrap: wrap; /* [เพิ่ม] ❗ นี่คือส่วนสำคัญที่ทำให้กระทงตกบรรทัดใหม่ */
+    width: 100%;
 }
 .krathong-choice {
     background: white;
     border: 3px solid #eee;
     border-radius: 15px;
-    padding: 15px;
+    padding: 10px; /* [แก้ไข] */
     cursor: pointer;
     transition: all 0.3s ease;
     text-align: center;
+    width: 150px; /* [เพิ่ม] กำหนดความกว้างคงที่ */
 }
 .krathong-choice img {
-    width: 150px;
-    height: 150px;
+    width: 120px; /* [แก้ไข] */
+    height: 120px; /* [แก้ไข] */
     object-fit: cover;
 }
 .krathong-choice:hover {
@@ -140,7 +148,7 @@ main {
     box-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
 }
 
-/* --- Page 3: Launch (โค้ดที่แก้ไขใหม่) --- */
+/* --- Page 3: Launch --- */
 .launch-page {
     justify-content: flex-start;
     align-items: flex-start;
@@ -154,8 +162,6 @@ main {
     opacity: 1; 
     transition: none; 
     z-index: 5;
-    
-    /* 🌊 [เพิ่ม] Animation ให้กระทงขยับขึ้นลง 🌊 */
     animation: bobbing 3s ease-in-out infinite; 
 }
 #krathong-to-launch img {
@@ -164,8 +170,6 @@ main {
 }
 
 #krathong-to-launch.animating {
-    /* 💨 [แก้ไข] เปลี่ยนจาก linear เป็น ease-in-out 💨 */
-    /* เพิ่ม animation 'bobbing' เข้าไปพร้อมกับ 'krathong-journey' */
     animation: krathong-journey 10s ease-in-out forwards, 
                bobbing 3s ease-in-out infinite;
 }
@@ -198,13 +202,12 @@ main {
     }
 }
 
-/* 🌊 [เพิ่ม] Keyframe สำหรับการขยับขึ้น-ลง 🌊 */
 @keyframes bobbing {
     0% {
         transform: translateX(-50%) scale(1.1) translateY(0px);
     }
     50% {
-        transform: translateX(-50%) scale(1.1) translateY(-5px); /* ขยับขึ้น 5px */
+        transform: translateX(-50%) scale(1.1) translateY(-5px);
     }
     100% {
         transform: translateX(-50%) scale(1.1) translateY(0px);
@@ -222,7 +225,7 @@ main {
     padding: 25px 30px;
     text-align: center;
     max-width: 400px;
-    width: 90%;
+    width: 90%; /* [แก้ไข] */
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     z-index: 8;
 }
@@ -262,6 +265,7 @@ main {
 /* --- Page 4: Final --- */
 .final-page .center-box {
     max-width: 600px;
+    width: 90%; /* [เพิ่ม] */
 }
 .final-message h2 {
     color: #ff69b4;
@@ -287,4 +291,94 @@ main {
     color: #4a4a4a;
     font-weight: bold;
     margin-top: 25px;
+}
+
+
+/* =========================================
+   [ 📱เพิ่ม 📱] MEDIA QUERIES สำหรับมือถือ
+=========================================
+*/
+@media (max-width: 768px) {
+
+    .center-box, .final-page .center-box {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .welcome-page h1 {
+        font-size: 1.5em; /* ลดขนาด H1 ในมือถือ */
+    }
+
+    /* --- Page 2 (Build) --- */
+    .build-options {
+        gap: 10px;
+    }
+    .krathong-choice {
+        width: 140px; /* ลดขนาดการ์ดกระทง */
+    }
+    .krathong-choice img {
+        width: 100px;
+        height: 100px;
+    }
+
+    /* --- Page 3 (Launch) --- */
+    .launch-page {
+        /* [แก้ไข] เปลี่ยน layout เป็นแนวตั้งในมือถือ */
+        flex-direction: column-reverse; /* เอากล่องอธิษฐานมาไว้ล่าง */
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 20px;
+    }
+    
+    .wish-box {
+        /* [แก้ไข] ยกเลิกการลอยตัว */
+        position: relative; 
+        top: auto;
+        right: auto;
+        width: 90%;
+        max-width: 450px;
+        margin-top: 30px; /* เว้นระยะจากขอบล่าง */
+        padding: 20px;
+    }
+
+    #krathong-to-launch {
+        /* [แก้ไข] ปรับตำแหน่งกระทงให้เหมาะกับมือถือ */
+        position: relative; /* ทำให้มันอยู่ใน flow ปกติ */
+        left: auto;
+        bottom: auto;
+        transform: translateX(0) scale(1.1); /* เอา translateX(-50%) ออก */
+        margin-top: 20px;
+        animation: none; /* [แก้ไข] ❗ ปิด animation ลอยขึ้นลงแบบเก่า */
+    }
+
+    #krathong-to-launch img {
+        width: 140px; /* ลดขนาดกระทงในมือถือ */
+    }
+    
+    #krathong-to-launch.animating {
+        /* [แก้ไข] ❗ เปลี่ยน animation ให้เหมาะกับมือถือ */
+        /* ทำให้มันลอยขึ้นและหายไป */
+        animation: krathong-journey-mobile 10s ease-in-out forwards;
+    }
+
+    /* [เพิ่ม] ❗ Keyframe สำหรับมือถือโดยเฉพาะ */
+    @keyframes krathong-journey-mobile {
+        0% {
+            transform: scale(1.1) translateY(0);
+            opacity: 1;
+        }
+        70% {
+            transform: scale(0.7) translateY(-200px); /* ลอยขึ้น */
+            opacity: 1;
+        }
+        100% {
+            transform: scale(0.5) translateY(-300px); /* ลอยขึ้นไปอีกและจางหาย */
+            opacity: 0; 
+        }
+    }
+
+    .top-left-controls {
+        top: 10px;
+        left: 10px;
+    }
 }
