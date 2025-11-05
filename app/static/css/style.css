@@ -148,60 +148,66 @@ main {
 
 #krathong-to-launch {
     position: absolute;
-    
-    /* --- ⬇️ นี่คือส่วนที่แก้ไข ⬇️ ---
-    เราต้องกำหนดตำแหน่งเริ่มต้น (เหมือนใน keyframe 0%) ให้มันเลย
-    เพื่อให้มันแสดงถูกที่ตั้งแต่แรก
-    */
     left: 30%;
     bottom: 20%;
-    transform: translateX(-50%) scale(1.1); /* ขนาดใหญ่ (ใกล้) */
-    opacity: 1; /* เริ่มต้นทึบแสง */
-    /* --- ⬆️ สิ้นสุดส่วนแก้ไข ⬆️ --- */
-
-    transition: none; /* ไม่ใช้ transition */
+    transform: translateX(-50%) scale(1.1); 
+    opacity: 1; 
+    transition: none; 
     z-index: 5;
+    
+    /* 🌊 [เพิ่ม] Animation ให้กระทงขยับขึ้นลง 🌊 */
+    animation: bobbing 3s ease-in-out infinite; 
 }
 #krathong-to-launch img {
-    width: 160px; /* ขนาดของกระทง (ปรับได้) */
+    width: 160px; 
     height: auto;
 }
 
-/* เปลี่ยนจาก .floating เป็น .animating */
 #krathong-to-launch.animating {
-    /* เรียกใช้ keyframe, 7 วินาที, วิ่งต่อเนื่อง, และคงสถานะสุดท้ายไว้ */
-    animation: krathong-journey 10s linear forwards;
+    /* 💨 [แก้ไข] เปลี่ยนจาก linear เป็น ease-in-out 💨 */
+    /* เพิ่ม animation 'bobbing' เข้าไปพร้อมกับ 'krathong-journey' */
+    animation: krathong-journey 10s ease-in-out forwards, 
+               bobbing 3s ease-in-out infinite;
 }
 
 /* --- Keyframe Animation ใหม่สำหรับกระทง --- */
 @keyframes krathong-journey {
     0% {
-        /* 1. เริ่มต้นที่ท่าน้ำ (ซ้ายล่าง) */
         left: 30%;
         bottom: 20%;
-        transform: translateX(-50%) scale(1.1); /* ขนาดใหญ่ (ใกล้) */
+        transform: translateX(-50%) scale(1.1); 
         opacity: 1;
     }
     40% {
-        /* 2. ลอยไปกลางแม่น้ำ */
         left: 40%;
         bottom: 25%;
-        transform: translateX(-50%) scale(0.9); /* เล็กลง (ไกลขึ้น) */
+        transform: translateX(-50%) scale(0.9); 
         opacity: 1;
     }
     70% {
-        /* 3. ลอยโค้งไปทางขวา (ไปทางวัดอรุณ) */
         left: 70%;
         bottom: 35%;
-        transform: translateX(-50%) scale(0.7); /* เล็กลงอีก */
+        transform: translateX(-50%) scale(0.7); 
         opacity: 1;
     }
     100% {
-        /* 4. ลอยไปสุดทางและจางหายไป */
         left: 85%;
         bottom: 40%;
-        transform: translateX(-50%) scale(0.5); /* เล็กมาก (ไกลสุด) */
-        opacity: 0; /* จางหายไป */
+        transform: translateX(-50%) scale(0.5); 
+        opacity: 0; 
+    }
+}
+
+/* 🌊 [เพิ่ม] Keyframe สำหรับการขยับขึ้น-ลง 🌊 */
+@keyframes bobbing {
+    0% {
+        transform: translateX(-50%) scale(1.1) translateY(0px);
+    }
+    50% {
+        transform: translateX(-50%) scale(1.1) translateY(-5px); /* ขยับขึ้น 5px */
+    }
+    100% {
+        transform: translateX(-50%) scale(1.1) translateY(0px);
     }
 }
 
